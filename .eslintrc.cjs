@@ -31,6 +31,16 @@ module.exports = {
       checkFragmentShorthand: true,
     }],
     'react/react-in-jsx-scope': 'off',
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "ts": "never",
+        "tsx": "never",
+        "js": "never",
+        "jsx": "never"
+      }
+    ],
   },
   overrides: [
   ],
