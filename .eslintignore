@@ -3,4 +3,5 @@
 /dist
 /src/types/**/*.json
 /src/types/**/*.yaml
+/src/vite-env.d.ts
 /public
