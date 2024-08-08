@@ -1,15 +1,26 @@
 import { EmailPhoneFieldProps } from './EmailPhoneField.types';
-import { StyledTextField } from '../../commons/StyledTextField/StyledTextField';
+import CustomTextField from '../CustomTextField/CustomTextField';
 
-export default function EmailPhoneField({ required, id, type, label, placeholder }: EmailPhoneFieldProps) {
+export default function EmailPhoneField({
+  required,
+  autoComplete,
+  id,
+  label,
+  placeholder,
+  control,
+  disabled,
+  error,
+}: EmailPhoneFieldProps) {
   return (
-    <StyledTextField
-      type={type}
+    <CustomTextField
       required={required}
+      autoComplete={autoComplete}
       id={id}
-      variant="outlined"
       label={label}
       placeholder={placeholder}
+      control={control}
+      disabled={disabled}
+      error={error}
     />
   );
 }

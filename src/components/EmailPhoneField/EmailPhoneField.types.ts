@@ -1,7 +1,13 @@
+import { Control } from 'react-hook-form';
+import { ContactInformationType } from '../ContactInformation/ContactInformation.types';
+
 export interface EmailPhoneFieldProps {
   required?: boolean;
-  id: string;
-  type: 'email' | 'tel';
+  autoComplete?: string;
+  id: 'email' | 'phone';
   label: string;
   placeholder?: string;
+  control: Control<ContactInformationType>;
+  disabled: boolean;
+  error: boolean;
 }
