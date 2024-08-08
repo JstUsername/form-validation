@@ -1,17 +1,12 @@
-import { Dispatch, SetStateAction } from 'react';
-
-export interface ProjectCardsType {
-  id: number;
-  title: string;
-  skills: string;
-  role: string;
-  beginning: string;
-  end: string;
-}
+import { Dispatch, SetStateAction, MutableRefObject } from 'react';
+import { ProjectFormHandle, ProjectFormType } from '../ProjectForm/ProjectForm.types';
+import { ErrorType } from '../ContactInformation/ContactInformation.types';
 
 export interface ProjectsProps {
-  projectCards: ProjectCardsType[];
-  setProjectCards: Dispatch<SetStateAction<ProjectCardsType[]>>;
+  projectCards: ProjectFormType[];
+  setProjectCards: Dispatch<SetStateAction<ProjectFormType[]>>;
   projectNumber: number;
   setProjectNumber: Dispatch<SetStateAction<number>>;
+  setError: Dispatch<SetStateAction<ErrorType>>;
+  projectFormRef: MutableRefObject<ProjectFormHandle[]>;
 }

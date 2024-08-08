@@ -1,10 +1,11 @@
 export const initialProjectCardsData = (projectNumber: number) => {
   return {
     id: projectNumber,
+    disabled: false,
     title: '',
-    skills: '',
+    skills: [],
     role: '',
-    beginning: '',
-    end: '',
+    beginning: new Date(),
+    end: null,
   };
 };
