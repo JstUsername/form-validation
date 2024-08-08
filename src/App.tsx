@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useCallback } from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
 import { ThemeProvider } from '@mui/material/styles';
 import theme from './theme';
@@ -37,6 +37,10 @@ function App() {
     contactValidation();
   };
 
+  const inValidateForms = useCallback(() => {
+    setContactInformation((prev) => ({ ...prev, disabled: !prev.disabled }));
+  }, []);
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
@@ -46,6 +50,7 @@ function App() {
         contactInformation={contactInformation}
         validateForms={validateForms}
         error={error}
+        inValidateForms={inValidateForms}
       >
         {tabsValue === 0 ? (
           <ContactInformation

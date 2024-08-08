@@ -50,7 +50,7 @@ export default function Projects({
             />
           );
         })}
-      <AddCardButton variant="contained" onClick={() => handleAddCard()}>
+      <AddCardButton variant="contained" disabled={contactInformation.disabled} onClick={() => handleAddCard()}>
         <PlusIcon />
       </AddCardButton>
     </ProjectsWrapper>

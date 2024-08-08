@@ -8,4 +8,5 @@ export interface LayoutProps {
   contactInformation: ContactInformationType;
   validateForms: () => void;
   error: ErrorType;
+  inValidateForms: () => void;
 }
