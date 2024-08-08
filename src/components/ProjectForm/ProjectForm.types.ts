@@ -1,11 +1,12 @@
 import { Dispatch, SetStateAction } from 'react';
-import { ErrorType } from '../ContactInformation/ContactInformation.types';
+import { ErrorType, ContactInformationType } from '../ContactInformation/ContactInformation.types';
 
 export interface ProjectFormProps {
   card: ProjectFormType;
   handleDeleteCard: (id: number) => void;
   setProjectCards: Dispatch<SetStateAction<ProjectFormType[]>>;
   setError: Dispatch<SetStateAction<ErrorType>>;
+  contactInformation: ContactInformationType;
 }
 
 export interface ProjectFormType {

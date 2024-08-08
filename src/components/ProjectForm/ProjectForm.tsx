@@ -17,7 +17,7 @@ import { ErrorMessage } from '../../commons/ErrorMessage/ErrorMessage';
 import TrashIcon from '../../assets/trash-icon.svg?react';
 
 const ProjectForm = forwardRef<ProjectFormHandle, ProjectFormProps>(
-  ({ card, handleDeleteCard, setProjectCards, setError }, ref) => {
+  ({ card, handleDeleteCard, setProjectCards, setError, contactInformation }, ref) => {
     const projectsForm = useForm<ProjectFormType>({
       defaultValues: { ...card },
       resolver: yupResolver(projectsFormValidationSchema),
@@ -30,10 +30,7 @@ const ProjectForm = forwardRef<ProjectFormHandle, ProjectFormProps>(
       setProjectCards((prev) => {
         return prev.map((card) => {
           if (card.id === data.id) {
-            if (!card.disabled) {
-              return { ...data, disabled: true };
-            }
-            return { ...card, disabled: false };
+            return { ...data, disabled: true };
           }
           return card;
         });
@@ -50,12 +47,28 @@ const ProjectForm = forwardRef<ProjectFormHandle, ProjectFormProps>(
       }
     };
 
+    const inValidate = (id: number) => {
+      setProjectCards((prev) => {
+        return prev.map((card) => {
+          if (card.id === id) {
+            return { ...card, disabled: false };
+          }
+          return card;
+        });
+      });
+    };
+
     useImperativeHandle(ref, () => ({
       projectValidate: validateAndSubmit,
     }));
 
     return (
-      <Form noValidate onSubmit={handleSubmit(submit)} sx={{ width: '100%', paddingBottom: '12px' }}>
+      <Form
+        noValidate
+        onSubmit={handleSubmit(submit)}
+        onReset={() => inValidate(card.id)}
+        sx={{ width: '100%', paddingBottom: '12px' }}
+      >
         <FormBlockWrapper>
           <HeaderWrapper>
             <Typography variant="h6" sx={{ marginLeft: '2px' }}>
@@ -118,9 +131,15 @@ const ProjectForm = forwardRef<ProjectFormHandle, ProjectFormProps>(
               </ErrorWrapper>
             </DatePickerWrapper>
           </FieldsWrapper>
-          <Button type="submit" variant="contained" sx={{ marginLeft: 'auto' }}>
-            {card.disabled ? 'Редактировать' : 'Добавить'}
-          </Button>
+          {card.disabled ? (
+            <Button variant="contained" type="reset" disabled={contactInformation.disabled} sx={{ marginLeft: 'auto' }}>
+              Редактировать
+            </Button>
+          ) : (
+            <Button type="submit" variant="contained" sx={{ marginLeft: 'auto' }}>
+              Добавить
+            </Button>
+          )}
         </FormBlockWrapper>
       </Form>
     );

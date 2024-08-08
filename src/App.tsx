@@ -62,6 +62,7 @@ function App() {
             setProjectNumber={setProjectNumber}
             setError={setError}
             projectFormRef={projectFormRef}
+            contactInformation={contactInformation}
           />
         )}
       </Layout>

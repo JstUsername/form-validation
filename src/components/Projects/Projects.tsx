@@ -1,9 +1,9 @@
+import { useCallback } from 'react';
 import { ProjectsProps } from './Projects.types';
 import { initialProjectCardsData } from './Projects.constants';
 import { ProjectsWrapper, AddCardButton } from './Projects.styled';
 import ProjectForm from '../ProjectForm/ProjectForm';
 import PlusIcon from '../../assets/plus-icon.svg?react';
-import { useCallback } from 'react';
 
 export default function Projects({
   projectCards,
@@ -12,13 +12,14 @@ export default function Projects({
   setProjectNumber,
   setError,
   projectFormRef,
+  contactInformation,
 }: ProjectsProps) {
-  const handleAddCard = () => {
+  const handleAddCard = useCallback(() => {
     setProjectCards((prev) => {
       return [...prev, initialProjectCardsData(projectNumber)];
     });
     setProjectNumber((prev) => prev + 1);
-  };
+  }, [setProjectCards, setProjectNumber, projectNumber]);
 
   const handleDeleteCard = useCallback(
     (id: number) => {
@@ -40,6 +41,7 @@ export default function Projects({
               handleDeleteCard={handleDeleteCard}
               setProjectCards={setProjectCards}
               setError={setError}
+              contactInformation={contactInformation}
               ref={(el) => {
                 if (el && projectFormRef.current[index] !== el) {
                   projectFormRef.current[index] = el;

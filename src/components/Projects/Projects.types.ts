@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction, MutableRefObject } from 'react';
 import { ProjectFormHandle, ProjectFormType } from '../ProjectForm/ProjectForm.types';
-import { ErrorType } from '../ContactInformation/ContactInformation.types';
+import { ErrorType, ContactInformationType } from '../ContactInformation/ContactInformation.types';
 
 export interface ProjectsProps {
   projectCards: ProjectFormType[];
@@ -9,4 +9,5 @@ export interface ProjectsProps {
   setProjectNumber: Dispatch<SetStateAction<number>>;
   setError: Dispatch<SetStateAction<ErrorType>>;
   projectFormRef: MutableRefObject<ProjectFormHandle[]>;
+  contactInformation: ContactInformationType;
 }
