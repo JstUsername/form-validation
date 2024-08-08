@@ -2,9 +2,9 @@ import { Controller } from 'react-hook-form';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import ru from 'date-fns/locale/ru/index';
-import { CustomDatePickerProps } from './CustomDatePicker.types';
+import { FormDatePickerProps } from './FormDatePicker.types';
 
-export default function CustomDatePicker({ label, name, control, disabled, error }: CustomDatePickerProps) {
+export default function FormDatePicker({ label, name, control, disabled, error }: FormDatePickerProps) {
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={ru}>
       <Controller

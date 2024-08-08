@@ -1,8 +1,8 @@
 import { Controller, FieldValues } from 'react-hook-form';
-import { CustomTextFieldProps } from './CustomTextField.types';
+import { FormTextFieldProps } from './FormTextField.types';
 import { StyledTextField } from '../../commons/StyledTextField/StyledTextField';
 
-export default function CustomTextField<T extends FieldValues>({
+export default function FormTextField<T extends FieldValues>({
   required,
   autoComplete,
   id,
@@ -11,7 +11,7 @@ export default function CustomTextField<T extends FieldValues>({
   control,
   disabled,
   error,
-}: CustomTextFieldProps<T>) {
+}: FormTextFieldProps<T>) {
   return (
     <Controller
       name={id}

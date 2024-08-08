@@ -1,6 +1,6 @@
 import { Control, FieldValues, Path } from 'react-hook-form';
 
-export interface CustomTextFieldProps<T extends FieldValues> {
+export interface FormTextFieldProps<T extends FieldValues> {
   required?: boolean;
   autoComplete?: string;
   id: Path<T>;

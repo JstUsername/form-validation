@@ -4,10 +4,10 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { Button, IconButton, Typography } from '@mui/material';
 import { projectsFormValidationSchema } from '../../schemas/projectsFormValidation';
 import { ProjectFormProps, ProjectFormType, ProjectFormHandle } from './ProjectForm.types';
-import CustomTextField from '../CustomTextField/CustomTextField';
-import CustomAutocomplete from '../CustomAutocomplete/CustomAutocomplete';
-import CustomSelect from '../CustomSelect/CustomSelect';
-import CustomDatePicker from '../CustomDatePicker/CustomDatePicker';
+import FormTextField from '../FormTextField/FormTextField';
+import FormAutocomplete from '../FormAutocomplete/FormAutocomplete';
+import FormSelect from '../FormSelect/FormSelect';
+import FormDatePicker from '../FormDatePicker/FormDatePicker';
 import { Form } from '../../commons/Form/Form';
 import { FormBlockWrapper } from '../../commons/FormBlockWrapper/FormBlockWrapper';
 import { FieldsWrapper } from '../../commons/FieldsWrapper/FieldsWrapper';
@@ -69,7 +69,7 @@ const ProjectForm = forwardRef<ProjectFormHandle, ProjectFormProps>(
           </HeaderWrapper>
           <FieldsWrapper sx={{ flexDirection: 'column', flexWrap: 'nowrap', gap: '12px' }}>
             <ErrorWrapper>
-              <CustomTextField
+              <FormTextField
                 required={true}
                 id="title"
                 label="Название"
@@ -81,11 +81,11 @@ const ProjectForm = forwardRef<ProjectFormHandle, ProjectFormProps>(
               {errors.title && <ErrorMessage variant="body1">{errors.title.message}</ErrorMessage>}
             </ErrorWrapper>
             <ErrorWrapper>
-              <CustomAutocomplete control={control} disabled={card.disabled} error={!!errors.skills} />
+              <FormAutocomplete control={control} disabled={card.disabled} error={!!errors.skills} />
               {errors.skills && <ErrorMessage variant="body1">{errors.skills.message}</ErrorMessage>}
             </ErrorWrapper>
             <ErrorWrapper>
-              <CustomSelect
+              <FormSelect
                 required={true}
                 id="role-input"
                 label="Роль на проекте"
@@ -97,7 +97,7 @@ const ProjectForm = forwardRef<ProjectFormHandle, ProjectFormProps>(
             </ErrorWrapper>
             <DatePickerWrapper>
               <ErrorWrapper sx={{ flex: 1 }}>
-                <CustomDatePicker
+                <FormDatePicker
                   label="Начало работы *"
                   name="beginning"
                   control={control}
@@ -107,7 +107,7 @@ const ProjectForm = forwardRef<ProjectFormHandle, ProjectFormProps>(
                 {errors.beginning && <ErrorMessage variant="body1">{errors.beginning.message}</ErrorMessage>}
               </ErrorWrapper>
               <ErrorWrapper sx={{ flex: 1 }}>
-                <CustomDatePicker
+                <FormDatePicker
                   label="Окончание работы"
                   name="end"
                   control={control}

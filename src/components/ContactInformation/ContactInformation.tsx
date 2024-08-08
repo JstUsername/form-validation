@@ -9,7 +9,7 @@ import { FormBlockWrapper } from '../../commons/FormBlockWrapper/FormBlockWrappe
 import { FieldsWrapper } from '../../commons/FieldsWrapper/FieldsWrapper';
 import { ErrorWrapper } from '../../commons/ErrorWrapper/ErrorWrapper';
 import { ErrorMessage } from '../../commons/ErrorMessage/ErrorMessage';
-import CustomTextField from '../CustomTextField/CustomTextField';
+import FormTextField from '../FormTextField/FormTextField';
 import EmailPhoneField from '../EmailPhoneField/EmailPhoneField';
 import FormCheckbox from '../FormCheckbox/FormCheckbox';
 
@@ -49,7 +49,7 @@ const ContactInformation = forwardRef<ContactInformationHandle, ContactInformati
           </Typography>
           <FieldsWrapper>
             <ErrorWrapper sx={{ gap: '8px' }}>
-              <CustomTextField
+              <FormTextField
                 required={true}
                 autoComplete="given-name"
                 id="surname"
@@ -62,7 +62,7 @@ const ContactInformation = forwardRef<ContactInformationHandle, ContactInformati
               {errors.surname && <ErrorMessage variant="body1">{errors.surname.message}</ErrorMessage>}
             </ErrorWrapper>
             <ErrorWrapper sx={{ gap: '8px' }}>
-              <CustomTextField
+              <FormTextField
                 required={true}
                 autoComplete="family-name"
                 id="name"
@@ -75,7 +75,7 @@ const ContactInformation = forwardRef<ContactInformationHandle, ContactInformati
               {errors.name && <ErrorMessage variant="body1">{errors.name.message}</ErrorMessage>}
             </ErrorWrapper>
             <ErrorWrapper sx={{ gap: '8px' }}>
-              <CustomTextField
+              <FormTextField
                 autoComplete="additional-name"
                 id="patronymic"
                 label="Отчество"

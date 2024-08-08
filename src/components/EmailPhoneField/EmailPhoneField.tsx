@@ -1,5 +1,5 @@
 import { EmailPhoneFieldProps } from './EmailPhoneField.types';
-import CustomTextField from '../CustomTextField/CustomTextField';
+import FormTextField from '../FormTextField/FormTextField';
 
 export default function EmailPhoneField({
   required,
@@ -12,7 +12,7 @@ export default function EmailPhoneField({
   error,
 }: EmailPhoneFieldProps) {
   return (
-    <CustomTextField
+    <FormTextField
       required={required}
       autoComplete={autoComplete}
       id={id}

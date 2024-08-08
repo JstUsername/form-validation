@@ -1,8 +1,8 @@
 import { Controller } from 'react-hook-form';
 import { FormControl, InputLabel, Select, MenuItem, SelectChangeEvent } from '@mui/material';
-import { CustomSelectProps } from './CustomSelect.types';
+import { FormSelectProps } from './FormSelect.types';
 
-export default function CustomSelect({ required, id, label, control, disabled, error }: CustomSelectProps) {
+export default function FormSelect({ required, id, label, control, disabled, error }: FormSelectProps) {
   return (
     <Controller
       name="role"

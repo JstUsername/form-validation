@@ -1,7 +1,7 @@
 import { Control } from 'react-hook-form';
 import { ProjectFormType } from '../ProjectForm/ProjectForm.types';
 
-export interface CustomDatePickerProps {
+export interface FormDatePickerProps {
   label: string;
   name: 'beginning' | 'end';
   control: Control<ProjectFormType>;

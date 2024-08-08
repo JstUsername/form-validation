@@ -1,7 +1,7 @@
 import { ProjectFormType } from '../ProjectForm/ProjectForm.types';
 import { Control } from 'react-hook-form';
 
-export interface CustomSelectProps {
+export interface FormSelectProps {
   required?: boolean;
   id: string;
   label: string;

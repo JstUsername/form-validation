@@ -1,11 +1,11 @@
 import { useMediaQuery, useTheme } from '@mui/material';
 import { Controller } from 'react-hook-form';
-import { CustomAutocompleteProps } from './CustomAutocomplete.types';
-import { StyledAutocomplete } from './CustomAutocomplete.styled';
+import { FormAutocompleteProps } from './FormAutocomplete.types';
+import { StyledAutocomplete } from './FormAutocomplete.styled';
 import { StyledTextField } from '../../commons/StyledTextField/StyledTextField';
-import { employeeSkills } from './CustomAutocomplete.constants';
+import { employeeSkills } from './FormAutocomplete.constants';
 
-export default function CustomAutocomplete({ control, disabled, error }: CustomAutocompleteProps) {
+export default function FormAutocomplete({ control, disabled, error }: FormAutocompleteProps) {
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
