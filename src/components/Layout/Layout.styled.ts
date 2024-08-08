@@ -1,4 +1,4 @@
-import { Box, styled, Tab } from '@mui/material';
+import { Box, styled, Tab, Tabs } from '@mui/material';
 
 export const LayoutWrapper = styled(Box)`
   margin: 16px;
@@ -6,9 +6,26 @@ export const LayoutWrapper = styled(Box)`
   border-radius: 4px;
 `;
 
-export const StyledTab = styled(Tab)`
+export const StyledTabs = styled(Tabs)<{ error: string }>`
+  min-height: 42px;
+  margin-bottom: -1px;
+    
+  & .MuiTabs-indicator {
+    background-color: ${({ error, theme }) => (error === 'true' ? theme.palette.error.main : theme.palette.primary.main)};
+  },
+`;
+
+export const StyledTab = styled(Tab)<{ error: string }>`
   min-height: 42px;
   padding: 9px 16px;
+
+  &.MuiTab-root {
+    color: ${({ error, theme }) => (error === 'true' ? theme.palette.error.main : theme.palette.primary.main)};
+  }
+
+  &.Mui-selected {
+    color: ${({ error, theme }) => (error === 'true' ? theme.palette.error.main : theme.palette.primary.main)};
+  }
 `;
 
 export const FormWrapper = styled(Box)`

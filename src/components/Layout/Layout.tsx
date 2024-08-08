@@ -1,22 +1,34 @@
 import { SyntheticEvent } from 'react';
 import { LayoutProps } from './Layout.types';
-import { Tabs, Button } from '@mui/material';
-import { LayoutWrapper, StyledTab, BottomWrapper, FormWrapper } from './Layout.styled';
+import { Button } from '@mui/material';
+import { LayoutWrapper, StyledTabs, StyledTab, BottomWrapper, FormWrapper } from './Layout.styled';
 
-export default function Layout({ children, tabsValue, setTabsValue }: LayoutProps) {
+export default function Layout({
+  children,
+  tabsValue,
+  setTabsValue,
+  contactInformation,
+  validateForms,
+  error,
+}: LayoutProps) {
   const handleChangeTab = (_event: SyntheticEvent, newValue: number) => {
     setTabsValue(newValue);
   };
-
   return (
     <LayoutWrapper>
-      <Tabs value={tabsValue} onChange={handleChangeTab} sx={{ minHeight: '42px' }}>
-        <StyledTab label="Контактная информация" />
-        <StyledTab label="Проекты" />
-      </Tabs>
+      <StyledTabs
+        value={tabsValue}
+        onChange={handleChangeTab}
+        error={(error.contactError || error.projectError).toString()}
+      >
+        <StyledTab label="Контактная информация" error={error.contactError.toString()} />
+        <StyledTab label="Проекты" error={error.projectError.toString()} />
+      </StyledTabs>
       <FormWrapper>{children}</FormWrapper>
       <BottomWrapper>
-        <Button variant="contained">Сохранить</Button>
+        <Button variant="contained" onClick={() => validateForms()}>
+          {contactInformation.disabled ? 'Редактировать' : 'Сохранить'}
+        </Button>
       </BottomWrapper>
     </LayoutWrapper>
   );
