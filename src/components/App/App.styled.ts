@@ -1,11 +1,5 @@
 import { Box, styled, Tab, Tabs } from '@mui/material';
 
-export const LayoutWrapper = styled(Box)`
-  margin: 16px;
-  border: 1px solid ${({ theme }) => theme.palette.primary.main};
-  border-radius: 4px;
-`;
-
 export const StyledTabs = styled(Tabs)<{ error: string }>`
   min-height: 42px;
   margin-bottom: -1px;
