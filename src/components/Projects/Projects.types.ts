@@ -1,7 +1,10 @@
-import { Dispatch, SetStateAction } from 'react';
+import { FieldArrayWithId, FieldArray, UseFieldArrayRemove } from 'react-hook-form';
+import { ProjectFormType } from '../ProjectForm/ProjectForm.types';
 
 export interface ProjectsProps {
-  projectNumber: number;
-  setProjectNumber: Dispatch<SetStateAction<number>>;
+  fields: FieldArrayWithId<ProjectFormType>[];
+  update: (index: number, value: FieldArray<ProjectFormType>) => void;
+  remove: UseFieldArrayRemove;
   contactDisabled: boolean;
+  handleAddCard: () => void;
 }

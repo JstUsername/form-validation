@@ -1,22 +1,9 @@
-import { useFormContext, useFieldArray } from 'react-hook-form';
 import { ProjectsProps } from './Projects.types';
-import { initialProjectCardsData } from './Projects.constants';
 import { ProjectsWrapper, AddCardButton } from './Projects.styled';
 import ProjectForm from '../ProjectForm/ProjectForm';
 import PlusIcon from '../../assets/plus-icon.svg?react';
 
-export default function Projects({ projectNumber, setProjectNumber, contactDisabled }: ProjectsProps) {
-  const { control } = useFormContext();
-  const { fields, append, update, remove } = useFieldArray({
-    control,
-    name: 'projectsArray',
-  });
-
-  const handleAddCard = () => {
-    setProjectNumber((prev) => prev + 1);
-    append({ ...initialProjectCardsData(projectNumber) });
-  };
-
+export default function Projects({ fields, update, remove, contactDisabled, handleAddCard }: ProjectsProps) {
   return (
     <ProjectsWrapper>
       {!!fields.length &&

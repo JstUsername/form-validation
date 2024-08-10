@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { FormProvider, useForm, SubmitHandler } from 'react-hook-form';
+import { FormProvider, useForm, SubmitHandler, useFieldArray } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import CssBaseline from '@mui/material/CssBaseline';
 import { ThemeProvider } from '@mui/material/styles';
@@ -23,8 +23,8 @@ function App() {
     defaultValues: { ...initialContactInformationData },
     resolver: yupResolver(contactInformationValidation),
   });
-  const { handleSubmit: handleContactSubmit, formState: contactFormState } = contactInformationForm;
-  const { errors: contactError } = contactFormState;
+  const { handleSubmit: handleContactSubmit, formState: contactState } = contactInformationForm;
+  const { errors: contactError } = contactState;
   const contactSubmit: SubmitHandler<ContactInformationType> = () => {
     setContactDisabled(true);
   };
@@ -33,9 +33,19 @@ function App() {
     defaultValues: { ...initialProjectCardsData(projectNumber) },
     resolver: yupResolver(projectsFormValidationSchema),
   });
-  const { formState: contactProjectState, handleSubmit: handleProjectSubmit } = projectForm;
-  const { errors: projectError } = contactProjectState;
+  const { control: projectControl, handleSubmit: handleProjectSubmit, formState: projectState } = projectForm;
+  const { errors: projectError } = projectState;
   const projectSubmit: SubmitHandler<ProjectFormType> = () => {};
+
+  const { append, fields, update, remove } = useFieldArray({
+    control: projectControl,
+    name: 'projectsArray',
+  });
+
+  const handleAddCard = () => {
+    setProjectNumber((prev) => prev + 1);
+    append({ ...initialProjectCardsData(projectNumber) });
+  };
 
   const error = { contactError: !!Object.keys(contactError).length, projectError: !!Object.keys(projectError).length };
 
@@ -66,9 +76,11 @@ function App() {
         ) : (
           <FormProvider {...projectForm}>
             <Projects
-              projectNumber={projectNumber}
-              setProjectNumber={setProjectNumber}
+              fields={fields}
+              update={update}
+              remove={remove}
               contactDisabled={contactDisabled}
+              handleAddCard={handleAddCard}
             />
           </FormProvider>
         )}
