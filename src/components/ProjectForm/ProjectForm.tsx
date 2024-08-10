@@ -28,7 +28,7 @@ export default function ProjectForm({ update, index, value, remove, contactDisab
   });
   const { errors: globalErrors } = globalFormState;
   const { errors: localErrors } = localFormState;
-  const errors = globalErrors?.projectsArray ? globalErrors.projectsArray[index] : localErrors;
+  const errors = globalErrors?.projectsArray?.length ? globalErrors?.projectsArray[index] : localErrors;
 
   const disabled = !!getValues(`projectsArray.${index}.disabled`) && getValues(`projectsArray.${index}.disabled`);
 
