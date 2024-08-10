@@ -1,8 +1,8 @@
 import { Control } from 'react-hook-form';
-import { ProjectFormType } from '../ProjectForm/ProjectForm.types';
+import { ProjectsFormValidationSchemaType } from '../../schemas/projectsFormValidation';
 
 export interface FormAutocompleteProps {
-  control: Control<ProjectFormType>;
+  control: Control<ProjectsFormValidationSchemaType>;
   disabled: boolean;
   error: boolean;
 }

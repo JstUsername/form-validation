@@ -1,19 +1,10 @@
-import { FieldArray } from 'react-hook-form';
+import { FieldArrayWithId, UseFieldArrayUpdate, UseFieldArrayRemove } from 'react-hook-form';
+import { ProjectsFormValidationSchemaType } from '../../schemas/projectsFormValidation';
 
 export interface ProjectFormProps {
-  contactDisabled: boolean;
-  update: (index: number, value: FieldArray<ProjectFormType>) => void;
+  update: UseFieldArrayUpdate<ProjectsFormValidationSchemaType>;
   index: number;
-  value: ProjectFormType;
-  remove: (index: number) => void;
-}
-
-export interface ProjectFormType {
-  number: number;
-  disabled: boolean;
-  title: string;
-  skills: string[];
-  role: string;
-  beginning: Date;
-  end?: Date | null;
+  value: FieldArrayWithId<ProjectsFormValidationSchemaType>;
+  remove: UseFieldArrayRemove;
+  contactDisabled: boolean;
 }

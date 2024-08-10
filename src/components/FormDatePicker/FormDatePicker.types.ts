@@ -1,10 +1,10 @@
 import { Control } from 'react-hook-form';
-import { ProjectFormType } from '../ProjectForm/ProjectForm.types';
+import { ProjectsFormValidationSchemaType } from '../../schemas/projectsFormValidation';
 
 export interface FormDatePickerProps {
   label: string;
   name: 'beginning' | 'end';
-  control: Control<ProjectFormType>;
+  control: Control<ProjectsFormValidationSchemaType>;
   disabled: boolean;
   error: boolean;
 }

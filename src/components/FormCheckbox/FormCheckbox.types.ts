@@ -1,8 +1,8 @@
 import { Control } from 'react-hook-form';
-import { ContactInformationType } from '../ContactInformation/ContactInformation.types';
+import { ContactInformationValidationType } from '../../schemas/contactInformationValidation';
 
 export interface FormCheckboxProps {
   id: 'activity';
-  control: Control<ContactInformationType>;
+  control: Control<ContactInformationValidationType>;
   disabled: boolean;
 }

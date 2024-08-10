@@ -32,7 +32,8 @@ export const FormWrapper = styled(Box)`
 export const BottomWrapper = styled(Box)`
   width: 100%;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
+  align-items: center;
   padding: 12px 12px 14px;
   border-top: 1px solid ${({ theme }) => theme.palette.primary.main};
 `;

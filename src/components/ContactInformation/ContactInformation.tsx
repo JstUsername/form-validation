@@ -1,5 +1,5 @@
 import { useFormContext } from 'react-hook-form';
-import { ContactInformationType } from './ContactInformation.types';
+import { ContactInformationValidationType } from '../../schemas/contactInformationValidation';
 import { Typography, Box, FormControlLabel } from '@mui/material';
 import { Form } from '../../commons/Form/Form';
 import { FormBlockWrapper } from '../../commons/FormBlockWrapper/FormBlockWrapper';
@@ -11,7 +11,7 @@ import EmailPhoneField from '../EmailPhoneField/EmailPhoneField';
 import FormCheckbox from '../FormCheckbox/FormCheckbox';
 
 export default function ContactInformation({ contactDisabled }: { contactDisabled: boolean }) {
-  const { control, formState } = useFormContext<ContactInformationType>();
+  const { control, formState } = useFormContext<ContactInformationValidationType>();
   const { errors } = formState;
 
   return (

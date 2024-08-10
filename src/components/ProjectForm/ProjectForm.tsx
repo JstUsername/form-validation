@@ -1,7 +1,8 @@
-import { useForm } from 'react-hook-form';
+import { SubmitHandler, useForm, useFormContext } from 'react-hook-form';
 import { Button, IconButton, Typography } from '@mui/material';
-import { projectsFormValidationSchema } from '../../schemas/projectsFormValidation';
+import { projectsFormValidationSchema, ProjectsFormValidationSchemaType } from '../../schemas/projectsFormValidation';
 import { ProjectFormProps } from './ProjectForm.types';
+import { ContactInformationValidationType } from '../../schemas/contactInformationValidation';
 import FormTextField from '../FormTextField/FormTextField';
 import FormAutocomplete from '../FormAutocomplete/FormAutocomplete';
 import FormSelect from '../FormSelect/FormSelect';
@@ -16,16 +17,30 @@ import TrashIcon from '../../assets/trash-icon.svg?react';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 export default function ProjectForm({ update, index, value, remove, contactDisabled }: ProjectFormProps) {
-  const { control, handleSubmit, formState } = useForm({
+  const { formState: globalFormState, clearErrors, getValues } = useFormContext<ContactInformationValidationType>();
+  const {
+    control,
+    formState: localFormState,
+    handleSubmit,
+  } = useForm<ProjectsFormValidationSchemaType>({
     defaultValues: value,
     resolver: yupResolver(projectsFormValidationSchema),
   });
-  const { errors } = formState;
+  const { errors: globalErrors } = globalFormState;
+  const { errors: localErrors } = localFormState;
+  const errors = globalErrors?.projectsArray ? globalErrors.projectsArray[index] : localErrors;
+
+  const disabled = !!getValues(`projectsArray.${index}.disabled`) && getValues(`projectsArray.${index}.disabled`);
+
+  const onSubmit: SubmitHandler<ProjectsFormValidationSchemaType> = (data) => {
+    update(index, { ...data, disabled: true });
+    clearErrors(`projectsArray.${index}`);
+  };
 
   return (
     <Form
       noValidate
-      onSubmit={handleSubmit((data) => update(index, { ...data, disabled: true }))}
+      onSubmit={handleSubmit(onSubmit)}
       onReset={() => update(index, { ...value, disabled: false })}
       sx={{ width: '100%', paddingBottom: '12px' }}
     >
@@ -34,7 +49,7 @@ export default function ProjectForm({ update, index, value, remove, contactDisab
           <Typography variant="h6" sx={{ marginLeft: '2px' }}>
             Проект №{value.number}
           </Typography>
-          {!value.disabled && (
+          {!disabled && (
             <IconButton sx={{ marginX: '-8px', marginY: '-8px' }} onClick={() => remove(index)}>
               <TrashIcon />
             </IconButton>
@@ -48,13 +63,13 @@ export default function ProjectForm({ update, index, value, remove, contactDisab
               label="Название"
               placeholder="Название проекта"
               control={control}
-              disabled={value.disabled}
+              disabled={disabled}
               error={!!errors.title}
             />
             {errors.title && <ErrorMessage variant="body1">{errors.title.message}</ErrorMessage>}
           </ErrorWrapper>
           <ErrorWrapper>
-            <FormAutocomplete control={control} disabled={value.disabled} error={!!errors.skills} />
+            <FormAutocomplete control={control} disabled={disabled} error={!!errors.skills} />
             {errors.skills && <ErrorMessage variant="body1">{errors.skills.message}</ErrorMessage>}
           </ErrorWrapper>
           <ErrorWrapper>
@@ -63,7 +78,7 @@ export default function ProjectForm({ update, index, value, remove, contactDisab
               id="role-input"
               label="Роль на проекте"
               control={control}
-              disabled={value.disabled}
+              disabled={disabled}
               error={!!errors.role}
             />
             {errors.role && <ErrorMessage variant="body1">{errors.role.message}</ErrorMessage>}
@@ -74,7 +89,7 @@ export default function ProjectForm({ update, index, value, remove, contactDisab
                 label="Начало работы *"
                 name="beginning"
                 control={control}
-                disabled={value.disabled}
+                disabled={disabled}
                 error={!!errors.beginning}
               />
               {errors.beginning && <ErrorMessage variant="body1">{errors.beginning.message}</ErrorMessage>}
@@ -84,14 +99,14 @@ export default function ProjectForm({ update, index, value, remove, contactDisab
                 label="Окончание работы"
                 name="end"
                 control={control}
-                disabled={value.disabled}
+                disabled={disabled}
                 error={!!errors.end}
               />
               {errors.end && <ErrorMessage variant="body1">{errors.end.message}</ErrorMessage>}
             </ErrorWrapper>
           </DatePickerWrapper>
         </FieldsWrapper>
-        {value.disabled ? (
+        {disabled ? (
           <Button variant="contained" type="reset" disabled={contactDisabled} sx={{ marginLeft: 'auto' }}>
             Редактировать
           </Button>

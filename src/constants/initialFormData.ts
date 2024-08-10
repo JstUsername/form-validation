@@ -1,4 +1,4 @@
-import { ContactInformationValidationType } from '../../schemas/contactInformationValidation';
+import { ContactInformationValidationType } from '../schemas/contactInformationValidation';
 
 export const initialFormData: ContactInformationValidationType = {
   disabled: false,

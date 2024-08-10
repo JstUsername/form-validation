@@ -1,62 +1,49 @@
 import { SyntheticEvent, useState } from 'react';
-import { FormProvider, useForm, SubmitHandler, useFieldArray } from 'react-hook-form';
+import { FormProvider, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import CssBaseline from '@mui/material/CssBaseline';
 import { ThemeProvider } from '@mui/material/styles';
 import { Box, Button } from '@mui/material';
 import theme from '../../theme';
-import { initialContactInformationData } from '../ContactInformation/ContactInformation.constants';
-import { initialProjectCardsData } from '../Projects/Projects.constants';
-import { ProjectFormType } from '../ProjectForm/ProjectForm.types';
-import { ContactInformationType } from '../ContactInformation/ContactInformation.types';
-import { contactInformationValidation } from '../../schemas/contactInformationValidation';
-import { projectsFormValidationSchema } from '../../schemas/projectsFormValidation';
+import { initialFormData } from '../../constants/initialFormData';
+import {
+  contactInformationValidation,
+  ContactInformationValidationType,
+} from '../../schemas/contactInformationValidation';
 import { BottomWrapper, FormWrapper, StyledTab, StyledTabs } from './App.styled';
+import { ErrorMessage } from '../../commons/ErrorMessage/ErrorMessage';
 import ContactInformation from '../ContactInformation/ContactInformation';
 import Projects from '../Projects/Projects';
 
 function App() {
   const [tabsValue, setTabsValue] = useState(0);
-  const [projectNumber, setProjectNumber] = useState(1);
   const [contactDisabled, setContactDisabled] = useState(false);
+
+  const contactInformationForm = useForm<ContactInformationValidationType>({
+    defaultValues: { ...initialFormData },
+    resolver: yupResolver(contactInformationValidation),
+  });
+  const { handleSubmit, formState, getValues, setValue } = contactInformationForm;
+  const { errors } = formState;
+
+  const onSubmit = () => {
+    setContactDisabled(true);
+    if (getValues('projectsArray').length) {
+      for (let i = 0; i < getValues('projectsArray').length; i++) {
+        setValue(`projectsArray.${i}.disabled`, true);
+      }
+    }
+  };
+
+  const { projectsArray, ...contactError } = errors;
+
+  const error = {
+    contactError: !!Object.keys(contactError).length,
+    projectError: !!projectsArray && !!Object.keys(projectsArray).length,
+  };
 
   const handleChangeTab = (_event: SyntheticEvent, newValue: number) => {
     setTabsValue(newValue);
-  };
-
-  const contactInformationForm = useForm<ContactInformationType>({
-    defaultValues: { ...initialContactInformationData },
-    resolver: yupResolver(contactInformationValidation),
-  });
-  const { handleSubmit: handleContactSubmit, formState: contactState } = contactInformationForm;
-  const { errors: contactError } = contactState;
-  const contactSubmit: SubmitHandler<ContactInformationType> = () => {
-    setContactDisabled(true);
-  };
-
-  const projectForm = useForm<ProjectFormType>({
-    defaultValues: { ...initialProjectCardsData(projectNumber) },
-    resolver: yupResolver(projectsFormValidationSchema),
-  });
-  const { control: projectControl, handleSubmit: handleProjectSubmit, formState: projectState } = projectForm;
-  const { errors: projectError } = projectState;
-  const projectSubmit: SubmitHandler<ProjectFormType> = () => {};
-
-  const { append, fields, update, remove } = useFieldArray({
-    control: projectControl,
-    name: 'projectsArray',
-  });
-
-  const handleAddCard = () => {
-    setProjectNumber((prev) => prev + 1);
-    append({ ...initialProjectCardsData(projectNumber) });
-  };
-
-  const error = { contactError: !!Object.keys(contactError).length, projectError: !!Object.keys(projectError).length };
-
-  const validateForms = () => {
-    handleContactSubmit(contactSubmit)();
-    handleProjectSubmit(projectSubmit)();
   };
 
   const inValidateForms = () => {
@@ -66,44 +53,39 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Box sx={{ margin: '16px', border: '1px solid primary.main', borderRadius: '4px' }}>
-        <StyledTabs
-          value={tabsValue}
-          onChange={handleChangeTab}
-          error={(error.contactError || error.projectError).toString()}
-        >
-          <StyledTab label="Контактная информация" error={error.contactError.toString()} />
-          <StyledTab label="Проекты" error={error.projectError.toString()} />
-        </StyledTabs>
-        <FormWrapper>
-          {tabsValue === 0 ? (
-            <FormProvider {...contactInformationForm}>
+      <FormProvider {...contactInformationForm}>
+        <Box sx={{ margin: '16px', border: '1px solid', borderColor: 'primary.main', borderRadius: '4px' }}>
+          <StyledTabs
+            value={tabsValue}
+            onChange={handleChangeTab}
+            error={(error.contactError || error.projectError).toString()}
+          >
+            <StyledTab label="Контактная информация" error={error.contactError.toString()} />
+            <StyledTab label="Проекты" error={error.projectError.toString()} />
+          </StyledTabs>
+          <FormWrapper>
+            {tabsValue === 0 ? (
               <ContactInformation contactDisabled={contactDisabled} />
-            </FormProvider>
-          ) : (
-            <FormProvider {...projectForm}>
-              <Projects
-                fields={fields}
-                update={update}
-                remove={remove}
-                contactDisabled={contactDisabled}
-                handleAddCard={handleAddCard}
-              />
-            </FormProvider>
-          )}
-        </FormWrapper>
-        <BottomWrapper>
-          {contactDisabled ? (
-            <Button variant="contained" onClick={() => inValidateForms()}>
-              Редактировать
-            </Button>
-          ) : (
-            <Button variant="contained" onClick={() => validateForms()}>
-              Сохранить
-            </Button>
-          )}
-        </BottomWrapper>
-      </Box>
+            ) : (
+              <Projects contactDisabled={contactDisabled} />
+            )}
+          </FormWrapper>
+          <BottomWrapper>
+            {typeof errors.projectsArray?.message === 'string' && (
+              <ErrorMessage variant="body1">{errors.projectsArray.message}</ErrorMessage>
+            )}
+            {contactDisabled ? (
+              <Button variant="contained" sx={{ marginLeft: 'auto' }} onClick={() => inValidateForms()}>
+                Редактировать
+              </Button>
+            ) : (
+              <Button variant="contained" sx={{ marginLeft: 'auto' }} onClick={handleSubmit(onSubmit)}>
+                Сохранить
+              </Button>
+            )}
+          </BottomWrapper>
+        </Box>
+      </FormProvider>
     </ThemeProvider>
   );
 }

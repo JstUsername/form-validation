@@ -1,5 +1,5 @@
 import { Control } from 'react-hook-form';
-import { ContactInformationType } from '../ContactInformation/ContactInformation.types';
+import { ContactInformationValidationType } from '../../schemas/contactInformationValidation';
 
 export interface EmailPhoneFieldProps {
   required?: boolean;
@@ -7,7 +7,7 @@ export interface EmailPhoneFieldProps {
   id: 'email' | 'phone';
   label: string;
   placeholder?: string;
-  control: Control<ContactInformationType>;
+  control: Control<ContactInformationValidationType>;
   disabled: boolean;
   error: boolean;
 }
