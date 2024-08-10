@@ -1,24 +1,19 @@
-import { Dispatch, SetStateAction } from 'react';
-import { ErrorType, ContactInformationType } from '../ContactInformation/ContactInformation.types';
+import { FieldArray } from 'react-hook-form';
 
 export interface ProjectFormProps {
-  card: ProjectFormType;
-  handleDeleteCard: (id: number) => void;
-  setProjectCards: Dispatch<SetStateAction<ProjectFormType[]>>;
-  setError: Dispatch<SetStateAction<ErrorType>>;
-  contactInformation: ContactInformationType;
+  contactDisabled: boolean;
+  update: (index: number, value: FieldArray<ProjectFormType>) => void;
+  index: number;
+  value: ProjectFormType;
+  remove: (index: number) => void;
 }
 
 export interface ProjectFormType {
-  id: number;
+  number: number;
   disabled: boolean;
   title: string;
   skills: string[];
   role: string;
   beginning: Date;
   end?: Date | null;
-}
-
-export interface ProjectFormHandle {
-  projectValidate: () => void;
 }

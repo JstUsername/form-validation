@@ -1,6 +1,6 @@
 export const initialProjectCardsData = (projectNumber: number) => {
   return {
-    id: projectNumber,
+    number: projectNumber,
     disabled: false,
     title: '',
     skills: [],

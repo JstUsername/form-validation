@@ -7,9 +7,9 @@ export default function Layout({
   children,
   tabsValue,
   setTabsValue,
-  contactInformation,
-  validateForms,
+  contactDisabled,
   error,
+  validateForms,
   inValidateForms,
 }: LayoutProps) {
   const handleChangeTab = (_event: SyntheticEvent, newValue: number) => {
@@ -27,7 +27,7 @@ export default function Layout({
       </StyledTabs>
       <FormWrapper>{children}</FormWrapper>
       <BottomWrapper>
-        {contactInformation.disabled ? (
+        {contactDisabled ? (
           <Button variant="contained" onClick={() => inValidateForms()}>
             Редактировать
           </Button>
