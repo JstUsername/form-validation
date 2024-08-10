@@ -13,3 +13,5 @@ export const projectsFormValidationSchema = yup.object().shape({
     .min(yup.ref('beginning'), 'Дата окончания не может быть меньше даты начала')
     .typeError('Введите дату в правильном формате.'),
 });
+
+export type ProjectsFormValidationSchemaType = yup.InferType<typeof projectsFormValidationSchema>;

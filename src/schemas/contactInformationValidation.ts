@@ -1,4 +1,5 @@
 import * as yup from 'yup';
+import { projectsFormValidationSchema } from './projectsFormValidation';
 
 export const contactInformationValidation = yup.object().shape({
   disabled: yup.boolean().required(),
@@ -12,4 +13,7 @@ export const contactInformationValidation = yup.object().shape({
     .boolean()
     .test('is-checked', 'Отметьте чекбокс.', (value) => value === true)
     .required(),
+  projectsArray: yup.array(projectsFormValidationSchema).required().min(1, 'Добавьте минимум один проект.'),
 });
+
+export type ContactInformationValidationType = yup.InferType<typeof contactInformationValidation>;
