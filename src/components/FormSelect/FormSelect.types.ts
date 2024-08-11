@@ -1,11 +1,9 @@
-import { ProjectsFormValidationSchemaType } from '../../schemas/projectsFormValidation';
-import { Control } from 'react-hook-form';
+import { Path, Control, FieldValues } from 'react-hook-form';
 
-export interface FormSelectProps {
+export interface FormSelectProps<T extends FieldValues> {
   required?: boolean;
-  id: string;
+  name: Path<T>;
   label: string;
-  control: Control<ProjectsFormValidationSchemaType>;
+  control: Control<T>;
   disabled: boolean;
-  error: boolean;
 }
