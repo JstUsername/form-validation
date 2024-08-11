@@ -1,10 +1,10 @@
-import { FieldArrayWithId, UseFieldArrayUpdate, UseFieldArrayRemove } from 'react-hook-form';
+import { UseFieldArrayRemove } from 'react-hook-form';
 import { ProjectsFormValidationSchemaType } from '../../schemas/projectsFormValidation';
 
 export interface ProjectFormProps {
-  update: UseFieldArrayUpdate<ProjectsFormValidationSchemaType>;
+  update: Function;
   index: number;
-  value: FieldArrayWithId<ProjectsFormValidationSchemaType>;
+  value: ProjectsFormValidationSchemaType;
   remove: UseFieldArrayRemove;
   contactDisabled: boolean;
 }
