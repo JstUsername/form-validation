@@ -22,7 +22,7 @@ export const StyledTab = styled(Tab)<{ error: string }>`
   }
 `;
 
-export const FormWrapper = styled(Box)`
+export const BodyWrapper = styled(Box)`
   width: 100%;
   padding: 16px;
   border-top: 1px solid ${({ theme }) => theme.palette.primary.main};

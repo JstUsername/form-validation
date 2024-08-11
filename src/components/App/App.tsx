@@ -10,7 +10,7 @@ import {
   contactInformationValidation,
   ContactInformationValidationType,
 } from '../../schemas/contactInformationValidation';
-import { BottomWrapper, FormWrapper, StyledTab, StyledTabs } from './App.styled';
+import { BottomWrapper, BodyWrapper, StyledTab, StyledTabs } from './App.styled';
 import { ErrorMessage } from '../../commons/ErrorMessage/ErrorMessage';
 import ContactInformation from '../ContactInformation/ContactInformation';
 import Projects from '../Projects/Projects';
@@ -63,17 +63,15 @@ function App() {
             <StyledTab label="Контактная информация" error={error.contactError.toString()} />
             <StyledTab label="Проекты" error={error.projectError.toString()} />
           </StyledTabs>
-          <FormWrapper>
+          <BodyWrapper>
             {tabsValue === 0 ? (
               <ContactInformation contactDisabled={contactDisabled} />
             ) : (
               <Projects contactDisabled={contactDisabled} />
             )}
-          </FormWrapper>
+          </BodyWrapper>
           <BottomWrapper>
-            {typeof errors.projectsArray?.message === 'string' && (
-              <ErrorMessage variant="body1">{errors.projectsArray.message}</ErrorMessage>
-            )}
+            <ErrorMessage>{errors?.projectsArray?.message}</ErrorMessage>
             {contactDisabled ? (
               <Button variant="contained" sx={{ marginLeft: 'auto' }} onClick={() => inValidateForms()}>
                 Редактировать
