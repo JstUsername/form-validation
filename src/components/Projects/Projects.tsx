@@ -1,14 +1,14 @@
 import { useFieldArray, useFormContext } from 'react-hook-form';
 import { ContactInformationValidationType } from '../../schemas/contactInformationValidation';
-import { ProjectsFormValidationSchemaType } from '../../schemas/projectsFormValidation';
 import { initialProjectCardsData } from './Projects.constants';
 import { ProjectsWrapper, AddCardButton } from './Projects.styled';
 import ProjectForm from '../ProjectForm/ProjectForm';
 import PlusIcon from '../../assets/plus-icon.svg?react';
 
 export default function Projects({ contactDisabled }: { contactDisabled: boolean }) {
-  const { watch } = useFormContext<ContactInformationValidationType>();
-  const { append, fields, update, remove } = useFieldArray<ProjectsFormValidationSchemaType>({
+  const { watch, control } = useFormContext<ContactInformationValidationType>();
+  const { append, fields, update, remove } = useFieldArray({
+    control,
     name: 'projectsArray',
   });
 
@@ -30,9 +30,11 @@ export default function Projects({ contactDisabled }: { contactDisabled: boolean
           contactDisabled={contactDisabled}
         />
       ))}
-      <AddCardButton variant="contained" disabled={contactDisabled} onClick={() => handleAddCard()}>
-        <PlusIcon />
-      </AddCardButton>
+      {!contactDisabled && (
+        <AddCardButton variant="contained" onClick={() => handleAddCard()}>
+          <PlusIcon />
+        </AddCardButton>
+      )}
     </ProjectsWrapper>
   );
 }
