@@ -7,7 +7,7 @@ import { employeeSkills } from './FormAutocomplete.constants';
 import { ErrorMessage } from '../../commons/ErrorMessage/ErrorMessage';
 import { ErrorWrapper } from '../../commons/ErrorWrapper/ErrorWrapper';
 
-export default function FormAutocomplete<T extends FieldValues>({ ...props }: FormAutocompleteProps<T>) {
+const FormAutocomplete = <T extends FieldValues>({ ...props }: FormAutocompleteProps<T>) => {
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
@@ -34,4 +34,6 @@ export default function FormAutocomplete<T extends FieldValues>({ ...props }: Fo
       )}
     />
   );
-}
+};
+
+export default FormAutocomplete;

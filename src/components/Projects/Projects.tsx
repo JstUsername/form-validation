@@ -5,7 +5,7 @@ import { ProjectsWrapper, AddCardButton } from './Projects.styled';
 import ProjectForm from '../ProjectForm/ProjectForm';
 import PlusIcon from '../../assets/plus-icon.svg?react';
 
-export default function Projects({ contactDisabled }: { contactDisabled: boolean }) {
+const Projects = ({ contactDisabled }: { contactDisabled: boolean }) => {
   const { watch, control } = useFormContext<ContactInformationValidationType>();
   const { append, fields, update, remove } = useFieldArray({
     control,
@@ -37,4 +37,6 @@ export default function Projects({ contactDisabled }: { contactDisabled: boolean
       )}
     </ProjectsWrapper>
   );
-}
+};
+
+export default Projects;

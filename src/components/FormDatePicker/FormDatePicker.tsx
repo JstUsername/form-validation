@@ -6,7 +6,7 @@ import { FormDatePickerProps } from './FormDatePicker.types';
 import { ErrorWrapper } from '../../commons/ErrorWrapper/ErrorWrapper';
 import { ErrorMessage } from '../../commons/ErrorMessage/ErrorMessage';
 
-export default function FormDatePicker<T extends FieldValues>({ ...props }: FormDatePickerProps<T>) {
+const FormDatePicker = <T extends FieldValues>({ ...props }: FormDatePickerProps<T>) => {
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={ru}>
       <Controller
@@ -22,4 +22,6 @@ export default function FormDatePicker<T extends FieldValues>({ ...props }: Form
       />
     </LocalizationProvider>
   );
-}
+};
+
+export default FormDatePicker;

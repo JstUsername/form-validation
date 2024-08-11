@@ -4,7 +4,7 @@ import { FormSelectProps } from './FormSelect.types';
 import { ErrorWrapper } from '../../commons/ErrorWrapper/ErrorWrapper';
 import { ErrorMessage } from '../../commons/ErrorMessage/ErrorMessage';
 
-export default function FormSelect<T extends FieldValues>({ ...props }: FormSelectProps<T>) {
+const FormSelect = <T extends FieldValues>({ ...props }: FormSelectProps<T>) => {
   return (
     <Controller
       {...props}
@@ -34,4 +34,6 @@ export default function FormSelect<T extends FieldValues>({ ...props }: FormSele
       )}
     />
   );
-}
+};
+
+export default FormSelect;

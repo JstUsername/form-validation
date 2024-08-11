@@ -15,7 +15,7 @@ import { ErrorMessage } from '../../commons/ErrorMessage/ErrorMessage';
 import ContactInformation from '../ContactInformation/ContactInformation';
 import Projects from '../Projects/Projects';
 
-function App() {
+const App = () => {
   const [tabsValue, setTabsValue] = useState(0);
   const [contactDisabled, setContactDisabled] = useState(false);
 
@@ -86,6 +86,6 @@ function App() {
       </FormProvider>
     </ThemeProvider>
   );
-}
+};
 
 export default App;

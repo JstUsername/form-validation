@@ -12,7 +12,7 @@ import { FieldsWrapper } from '../../commons/FieldsWrapper/FieldsWrapper';
 import { DatePickerWrapper, HeaderWrapper } from './ProjectForm.styled';
 import TrashIcon from '../../assets/trash-icon.svg?react';
 
-export default function ProjectForm({ update, index, value, remove, contactDisabled }: ProjectFormProps) {
+const ProjectForm = ({ update, index, value, remove, contactDisabled }: ProjectFormProps) => {
   const { getValues, control, trigger, setValue } = useFormContext<ContactInformationValidationType>();
   const disabled = getValues(`projectsArray.${index}.disabled`);
 
@@ -86,4 +86,6 @@ export default function ProjectForm({ update, index, value, remove, contactDisab
       </FormBlockWrapper>
     </FormWrapper>
   );
-}
+};
+
+export default ProjectForm;

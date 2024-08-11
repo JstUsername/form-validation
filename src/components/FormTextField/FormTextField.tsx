@@ -4,7 +4,7 @@ import { StyledTextField } from '../../commons/StyledTextField/StyledTextField';
 import { ErrorWrapper } from '../../commons/ErrorWrapper/ErrorWrapper';
 import { ErrorMessage } from '../../commons/ErrorMessage/ErrorMessage';
 
-export default function FormTextField<T extends FieldValues>({ ...props }: FormTextFieldProps<T>) {
+const FormTextField = <T extends FieldValues>({ ...props }: FormTextFieldProps<T>) => {
   return (
     <Controller
       name={props.name}
@@ -19,4 +19,6 @@ export default function FormTextField<T extends FieldValues>({ ...props }: FormT
       )}
     />
   );
-}
+};
+
+export default FormTextField;

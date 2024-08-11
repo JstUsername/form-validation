@@ -4,7 +4,7 @@ import { FormCheckboxProps } from './FormCheckbox.types';
 import { ErrorWrapper } from '../../commons/ErrorWrapper/ErrorWrapper';
 import { ErrorMessage } from '../../commons/ErrorMessage/ErrorMessage';
 
-export default function FormCheckbox({ name, disabled }: FormCheckboxProps) {
+const FormCheckbox = ({ name, disabled }: FormCheckboxProps) => {
   return (
     <Controller
       name={name}
@@ -23,4 +23,6 @@ export default function FormCheckbox({ name, disabled }: FormCheckboxProps) {
       )}
     />
   );
-}
+};
+
+export default FormCheckbox;

@@ -8,7 +8,7 @@ import FormTextField from '../FormTextField/FormTextField';
 import EmailPhoneField from '../EmailPhoneField/EmailPhoneField';
 import FormCheckbox from '../FormCheckbox/FormCheckbox';
 
-export default function ContactInformation({ contactDisabled }: { contactDisabled: boolean }) {
+const ContactInformation = ({ contactDisabled }: { contactDisabled: boolean }) => {
   const { control } = useFormContext<ContactInformationValidationType>();
 
   return (
@@ -81,4 +81,6 @@ export default function ContactInformation({ contactDisabled }: { contactDisable
       </FormWrapper>
     </form>
   );
-}
+};
+
+export default ContactInformation;
