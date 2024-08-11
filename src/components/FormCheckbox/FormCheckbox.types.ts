@@ -1,4 +1,4 @@
 export interface FormCheckboxProps {
-  id: 'activity';
+  name: 'activity';
   disabled: boolean;
 }
