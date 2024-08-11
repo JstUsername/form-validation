@@ -4,32 +4,14 @@ import { StyledTextField } from '../../commons/StyledTextField/StyledTextField';
 import { ErrorWrapper } from '../../commons/ErrorWrapper/ErrorWrapper';
 import { ErrorMessage } from '../../commons/ErrorMessage/ErrorMessage';
 
-export default function FormTextField<T extends FieldValues>({
-  required,
-  autoComplete,
-  name,
-  label,
-  placeholder,
-  control,
-  disabled,
-}: FormTextFieldProps<T>) {
+export default function FormTextField<T extends FieldValues>({ ...props }: FormTextFieldProps<T>) {
   return (
     <Controller
-      name={name}
-      control={control}
+      name={props.name}
+      control={props.control}
       render={({ field, fieldState: { error } }) => (
         <ErrorWrapper>
-          <StyledTextField
-            {...field}
-            required={required}
-            autoComplete={autoComplete}
-            id={name}
-            variant="outlined"
-            label={label}
-            placeholder={placeholder}
-            disabled={disabled}
-            error={!!error}
-          />
+          <StyledTextField {...field} {...props} id={props.name} variant="outlined" error={!!error} />
           {!!error?.message && (
             <ErrorMessage sx={{ color: 'error.main', marginLeft: '2px' }}>{error?.message}</ErrorMessage>
           )}

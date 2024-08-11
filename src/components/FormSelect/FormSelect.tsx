@@ -4,30 +4,22 @@ import { FormSelectProps } from './FormSelect.types';
 import { ErrorWrapper } from '../../commons/ErrorWrapper/ErrorWrapper';
 import { ErrorMessage } from '../../commons/ErrorMessage/ErrorMessage';
 
-export default function FormSelect<T extends FieldValues>({
-  required,
-  name,
-  label,
-  control,
-  disabled,
-}: FormSelectProps<T>) {
+export default function FormSelect<T extends FieldValues>({ ...props }: FormSelectProps<T>) {
   return (
     <Controller
-      name={name}
-      control={control}
+      {...props}
       render={({ field, fieldState: { error } }) => (
         <FormControl>
           <ErrorWrapper>
-            <InputLabel id={`${name}-label`} required={required} error={!!error}>
-              {label}
+            <InputLabel {...props} id={`${props.name}-label`} error={!!error}>
+              {props.label}
             </InputLabel>
             <Select
               {...field}
-              labelId={`${name}-label`}
-              id={name}
-              label={label}
+              {...props}
+              labelId={`${props.name}-label`}
+              id={props.name}
               onChange={(event: SelectChangeEvent) => field.onChange(event.target.value)}
-              disabled={disabled}
               error={!!error}
             >
               <MenuItem value="Разработчик">Разработчик</MenuItem>
