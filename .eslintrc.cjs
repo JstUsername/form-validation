@@ -31,17 +31,23 @@ module.exports = {
       checkFragmentShorthand: true,
     }],
     'react/react-in-jsx-scope': 'off',
-    "import/extensions": [
-      "error",
-      "ignorePackages",
+    'import/extensions': [
+      'error',
+      'ignorePackages',
       {
-        "ts": "never",
-        "tsx": "never",
-        "js": "never",
-        "jsx": "never"
+        'ts': 'never',
+        'tsx': 'never',
+        'js': 'never',
+        'jsx': 'never'
       }
     ],
   },
   overrides: [
+    {
+      files: ['src/constants/**/*.{js,ts,tsx}'],
+      rules: {
+        'unicorn/filename-case': 'off',
+      },
+    }
   ],
 };
