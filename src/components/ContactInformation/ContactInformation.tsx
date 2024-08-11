@@ -110,7 +110,7 @@ export default function ContactInformation({ contactDisabled }: { contactDisable
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
             <FormControlLabel
               required
-              control={<FormCheckbox id="activity" control={control} disabled={contactDisabled} />}
+              control={<FormCheckbox id="activity" disabled={contactDisabled} />}
               label="За любой движ"
               sx={{ color: errors.activity ? 'error.main' : 'text.primary', margin: 0 }}
             />

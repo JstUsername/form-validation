@@ -2,11 +2,10 @@ import { Controller } from 'react-hook-form';
 import { Checkbox } from '@mui/material';
 import { FormCheckboxProps } from './FormCheckbox.types';
 
-export default function FormCheckbox({ id, control, disabled }: FormCheckboxProps) {
+export default function FormCheckbox({ id, disabled }: FormCheckboxProps) {
   return (
     <Controller
       name={id}
-      control={control}
       render={({ field }) => (
         <Checkbox
           {...field}
