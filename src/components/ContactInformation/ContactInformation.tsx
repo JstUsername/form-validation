@@ -20,7 +20,7 @@ export default function ContactInformation({ contactDisabled }: { contactDisable
           </Typography>
           <FieldsWrapper>
             <FormTextField
-              required={true}
+              required
               autoComplete="given-name"
               name="surname"
               label="Фамилия"
@@ -29,7 +29,7 @@ export default function ContactInformation({ contactDisabled }: { contactDisable
               disabled={contactDisabled}
             />
             <FormTextField
-              required={true}
+              required
               autoComplete="family-name"
               name="name"
               label="Имя"
@@ -53,7 +53,7 @@ export default function ContactInformation({ contactDisabled }: { contactDisable
           </Typography>
           <FieldsWrapper>
             <EmailPhoneField
-              required={true}
+              required
               autoComplete="tel"
               name="phone"
               label="Телефон"

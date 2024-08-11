@@ -44,7 +44,7 @@ export default function ProjectForm({ update, index, value, remove, contactDisab
         </HeaderWrapper>
         <FieldsWrapper sx={{ flexDirection: 'column', flexWrap: 'nowrap', gap: '12px' }}>
           <FormTextField
-            required={true}
+            required
             name={`projectsArray.${index}.title`}
             label="Название"
             placeholder="Название проекта"
@@ -53,7 +53,7 @@ export default function ProjectForm({ update, index, value, remove, contactDisab
           />
           <FormAutocomplete name={`projectsArray.${index}.skills`} control={control} disabled={disabled} />
           <FormSelect
-            required={true}
+            required
             name={`projectsArray.${index}.role`}
             label="Роль на проекте"
             control={control}
