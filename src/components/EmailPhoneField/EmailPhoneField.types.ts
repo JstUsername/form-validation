@@ -4,10 +4,9 @@ import { ContactInformationValidationType } from '../../schemas/contactInformati
 export interface EmailPhoneFieldProps {
   required?: boolean;
   autoComplete?: string;
-  id: 'email' | 'phone';
+  name: 'email' | 'phone';
   label: string;
   placeholder?: string;
   control: Control<ContactInformationValidationType>;
   disabled: boolean;
-  error: boolean;
 }
