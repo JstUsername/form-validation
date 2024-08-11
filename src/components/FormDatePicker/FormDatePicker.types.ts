@@ -1,10 +1,8 @@
-import { Control } from 'react-hook-form';
-import { ProjectsFormValidationSchemaType } from '../../schemas/projectsFormValidation';
+import { FieldValues, Path, Control } from 'react-hook-form';
 
-export interface FormDatePickerProps {
+export interface FormDatePickerProps<T extends FieldValues> {
   label: string;
-  name: 'beginning' | 'end';
-  control: Control<ProjectsFormValidationSchemaType>;
+  name: Path<T>;
+  control: Control<T>;
   disabled: boolean;
-  error: boolean;
 }
