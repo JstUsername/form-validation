@@ -3,7 +3,7 @@ import { Controller, FieldValues } from 'react-hook-form';
 import { FormAutocompleteProps } from './FormAutocomplete.types';
 import { StyledAutocomplete } from './FormAutocomplete.styled';
 import { StyledTextField } from '../../commons/StyledTextField/StyledTextField';
-import { employeeSkills } from './FormAutocomplete.constants';
+import { employeeSkills } from '../../constants/employeeSkills';
 import { ErrorMessage } from '../../commons/ErrorMessage/ErrorMessage';
 import { ErrorWrapper } from '../../commons/ErrorWrapper/ErrorWrapper';
 
