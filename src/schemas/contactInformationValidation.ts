@@ -4,7 +4,6 @@ import { projectsFormValidationSchema } from './projectsFormValidation';
 
 export const contactInformationValidation = object().shape({
   disabled: boolean().required(),
-  error: boolean().required(),
   surname: string()
     .required('Введите фамилию.')
     .matches(/^[А-Яа-яЁёA-Za-z]+$/, 'Введите только буквы.'),

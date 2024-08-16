@@ -2,7 +2,6 @@ import { ContactInformationValidationType } from '../schemas/contactInformationV
 
 export const initialFormData: ContactInformationValidationType = {
   disabled: false,
-  error: false,
   surname: '',
   name: '',
   patronymic: '',
