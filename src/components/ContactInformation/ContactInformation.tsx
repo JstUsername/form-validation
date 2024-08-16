@@ -1,5 +1,3 @@
-import { useFormContext } from 'react-hook-form';
-import { ContactInformationValidationType } from '../../schemas/contactInformationValidation';
 import { Typography, Box } from '@mui/material';
 import { FormWrapper } from '../../commons/FormWrapper/FormWrapper';
 import { FormBlockWrapper } from '../../commons/FormBlockWrapper/FormBlockWrapper';
@@ -9,8 +7,6 @@ import PhoneField from '../PhoneField/PhoneField';
 import FormCheckbox from '../FormCheckbox/FormCheckbox';
 
 const ContactInformation = ({ contactDisabled }: { contactDisabled: boolean }) => {
-  const { control } = useFormContext<ContactInformationValidationType>();
-
   return (
     <form>
       <FormWrapper>
@@ -23,7 +19,6 @@ const ContactInformation = ({ contactDisabled }: { contactDisabled: boolean }) =
               name="surname"
               label="Фамилия"
               placeholder="Иванов"
-              control={control}
               disabled={contactDisabled}
             />
             <FormTextField
@@ -32,7 +27,6 @@ const ContactInformation = ({ contactDisabled }: { contactDisabled: boolean }) =
               name="name"
               label="Имя"
               placeholder="Иван"
-              control={control}
               disabled={contactDisabled}
             />
             <FormTextField
@@ -40,7 +34,6 @@ const ContactInformation = ({ contactDisabled }: { contactDisabled: boolean }) =
               name="patronymic"
               label="Отчество"
               placeholder="Иванович"
-              control={control}
               disabled={contactDisabled}
             />
           </FieldsWrapper>
@@ -48,20 +41,12 @@ const ContactInformation = ({ contactDisabled }: { contactDisabled: boolean }) =
         <FormBlockWrapper>
           <Typography variant="h6">Контакты</Typography>
           <FieldsWrapper>
-            <PhoneField
-              required
-              autoComplete="tel"
-              name="phone"
-              label="Телефон"
-              control={control}
-              disabled={contactDisabled}
-            />
+            <PhoneField required autoComplete="tel" name="phone" label="Телефон" disabled={contactDisabled} />
             <FormTextField
               autoComplete="email"
               name="email"
               label="E-mail"
               placeholder="example@domain.com"
-              control={control}
               disabled={contactDisabled}
             />
           </FieldsWrapper>

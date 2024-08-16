@@ -13,7 +13,7 @@ import { DatePickerWrapper, HeaderWrapper } from './ProjectForm.styled';
 import TrashIcon from '../../assets/trash-icon.svg?react';
 
 const ProjectForm = ({ update, index, value, remove, contactDisabled }: ProjectFormProps) => {
-  const { getValues, control, trigger } = useFormContext<ContactInformationValidationType>();
+  const { getValues, trigger } = useFormContext<ContactInformationValidationType>();
   const disabled = getValues(`projectsArray.${index}.disabled`);
 
   const ProjectSubmit = async () => {
@@ -45,31 +45,19 @@ const ProjectForm = ({ update, index, value, remove, contactDisabled }: ProjectF
             name={`projectsArray.${index}.title`}
             label="Название"
             placeholder="Название проекта"
-            control={control}
             disabled={disabled}
           />
-          <FormAutocomplete name={`projectsArray.${index}.skills`} control={control} disabled={disabled} />
+          <FormAutocomplete name={`projectsArray.${index}.skills`} disabled={disabled} />
           <FormSelect
             required
             name={`projectsArray.${index}.role`}
             label="Роль на проекте"
-            control={control}
             disabled={disabled}
             items={['Разработчик', 'Тестировщик', 'Аналитик']}
           />
           <DatePickerWrapper>
-            <FormDatePicker
-              label="Начало работы *"
-              name={`projectsArray.${index}.beginning`}
-              control={control}
-              disabled={disabled}
-            />
-            <FormDatePicker
-              label="Окончание работы"
-              name={`projectsArray.${index}.end`}
-              control={control}
-              disabled={disabled}
-            />
+            <FormDatePicker label="Начало работы *" name={`projectsArray.${index}.beginning`} disabled={disabled} />
+            <FormDatePicker label="Окончание работы" name={`projectsArray.${index}.end`} disabled={disabled} />
           </DatePickerWrapper>
         </FieldsWrapper>
         {disabled ? (

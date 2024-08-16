@@ -1,13 +1,16 @@
-import { Controller, FieldValues } from 'react-hook-form';
+import { Control, Controller, FieldValues, useFormContext } from 'react-hook-form';
 import { FormControl, InputLabel, Select, MenuItem, SelectChangeEvent } from '@mui/material';
 import { FormSelectProps } from './FormSelect.types';
 import { ErrorWrapper } from '../../commons/ErrorWrapper/ErrorWrapper';
 import { ErrorMessage } from '../../commons/ErrorMessage/ErrorMessage';
 
 const FormSelect = <T extends FieldValues>({ disabled, ...props }: FormSelectProps<T>) => {
+  const { control }: { control: Control<T> } = useFormContext();
+
   return (
     <Controller
       {...props}
+      control={control}
       render={({ field, fieldState: { error } }) => (
         <FormControl>
           <ErrorWrapper>

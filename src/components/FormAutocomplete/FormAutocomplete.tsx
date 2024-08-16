@@ -1,5 +1,5 @@
 import { useMediaQuery, useTheme } from '@mui/material';
-import { Controller, FieldValues } from 'react-hook-form';
+import { Control, Controller, FieldValues, useFormContext } from 'react-hook-form';
 import { FormAutocompleteProps } from './FormAutocomplete.types';
 import { StyledAutocomplete } from './FormAutocomplete.styled';
 import { StyledTextField } from '../../commons/StyledTextField/StyledTextField';
@@ -10,10 +10,12 @@ import { ErrorWrapper } from '../../commons/ErrorWrapper/ErrorWrapper';
 const FormAutocomplete = <T extends FieldValues>({ disabled, ...props }: FormAutocompleteProps<T>) => {
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
+  const { control }: { control: Control<T> } = useFormContext();
 
   return (
     <Controller
       {...props}
+      control={control}
       render={({ field, fieldState: { error } }) => (
         <ErrorWrapper>
           <StyledAutocomplete

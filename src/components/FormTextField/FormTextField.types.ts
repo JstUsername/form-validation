@@ -1,4 +1,4 @@
-import { Control, FieldValues, Path } from 'react-hook-form';
+import { FieldValues, Path } from 'react-hook-form';
 import { InputBaseComponentsPropsOverrides } from '@mui/material';
 
 export interface FormTextFieldProps<T extends FieldValues> {
@@ -7,7 +7,6 @@ export interface FormTextFieldProps<T extends FieldValues> {
   name: Path<T>;
   label: string;
   placeholder?: string;
-  control: Control<T>;
   disabled?: boolean;
   InputProps?: InputBaseComponentsPropsOverrides;
 }
