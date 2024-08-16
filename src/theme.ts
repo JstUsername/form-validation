@@ -1,6 +1,20 @@
 import { createTheme } from '@mui/material/styles';
 import '@fontsource/roboto';
 
+declare module '@mui/material/styles' {
+  interface Theme {
+    customShadows: {
+      primary: string;
+    };
+  }
+
+  interface ThemeOptions {
+    customShadows?: {
+      primary?: string;
+    };
+  }
+}
+
 const theme = createTheme({
   breakpoints: {
     values: {
@@ -43,6 +57,9 @@ const theme = createTheme({
       lineHeight: '24px',
       letterSpacing: '0.4px',
     },
+  },
+  customShadows: {
+    primary: '0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12)',
   },
 });
 
