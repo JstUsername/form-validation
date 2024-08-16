@@ -15,9 +15,7 @@ const ContactInformation = ({ contactDisabled }: { contactDisabled: boolean }) =
     <form>
       <FormWrapper>
         <FormBlockWrapper>
-          <Typography variant="h6" sx={{ marginLeft: '2px' }}>
-            Общая информация
-          </Typography>
+          <Typography variant="h6">Общая информация</Typography>
           <FieldsWrapper>
             <FormTextField
               required
@@ -48,9 +46,7 @@ const ContactInformation = ({ contactDisabled }: { contactDisabled: boolean }) =
           </FieldsWrapper>
         </FormBlockWrapper>
         <FormBlockWrapper>
-          <Typography variant="h6" sx={{ marginLeft: '2px' }}>
-            Контакты
-          </Typography>
+          <Typography variant="h6">Контакты</Typography>
           <FieldsWrapper>
             <PhoneField
               required
@@ -71,9 +67,7 @@ const ContactInformation = ({ contactDisabled }: { contactDisabled: boolean }) =
           </FieldsWrapper>
         </FormBlockWrapper>
         <FormBlockWrapper>
-          <Typography variant="h6" sx={{ marginLeft: '2px' }}>
-            Другое
-          </Typography>
+          <Typography variant="h6">Другое</Typography>
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
             <FormCheckbox name="activity" disabled={contactDisabled} />
           </Box>

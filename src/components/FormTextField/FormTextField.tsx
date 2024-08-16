@@ -12,9 +12,7 @@ const FormTextField = <T extends FieldValues>({ ...props }: FormTextFieldProps<T
       render={({ field, fieldState: { error } }) => (
         <ErrorWrapper>
           <StyledTextField {...field} {...props} id={props.name} variant="outlined" error={!!error} />
-          {!!error?.message && (
-            <ErrorMessage sx={{ color: 'error.main', marginLeft: '2px' }}>{error?.message}</ErrorMessage>
-          )}
+          {!!error?.message && <ErrorMessage sx={{ color: 'error.main' }}>{error?.message}</ErrorMessage>}
         </ErrorWrapper>
       )}
     />

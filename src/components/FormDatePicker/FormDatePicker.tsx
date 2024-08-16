@@ -14,9 +14,7 @@ const FormDatePicker = <T extends FieldValues>({ ...props }: FormDatePickerProps
         render={({ field, fieldState: { error } }) => (
           <ErrorWrapper sx={{ flex: 1 }}>
             <DatePicker {...field} {...props} onChange={(date) => field.onChange(date)} disablePast={!!error} />
-            {!!error?.message && (
-              <ErrorMessage sx={{ color: 'error.main', marginLeft: '2px' }}>{error?.message}</ErrorMessage>
-            )}
+            {!!error?.message && <ErrorMessage sx={{ color: 'error.main' }}>{error?.message}</ErrorMessage>}
           </ErrorWrapper>
         )}
       />

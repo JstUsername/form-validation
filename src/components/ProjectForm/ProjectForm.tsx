@@ -33,9 +33,7 @@ const ProjectForm = ({ update, index, value, remove, contactDisabled }: ProjectF
     <FormWrapper sx={{ width: '100%', paddingBottom: '12px' }}>
       <FormBlockWrapper>
         <HeaderWrapper>
-          <Typography variant="h6" sx={{ marginLeft: '2px' }}>
-            Проект №{value.number}
-          </Typography>
+          <Typography variant="h6">Проект №{value.number}</Typography>
           {!disabled && (
             <IconButton sx={{ marginX: '-8px', marginY: '-8px' }} onClick={() => remove(index)}>
               <TrashIcon />

@@ -26,9 +26,7 @@ const FormSelect = <T extends FieldValues>({ ...props }: FormSelectProps<T>) => 
               <MenuItem value="Тестировщик">Тестировщик</MenuItem>
               <MenuItem value="Аналитик">Аналитик</MenuItem>
             </Select>
-            {!!error?.message && (
-              <ErrorMessage sx={{ color: 'error.main', marginLeft: '2px' }}>{error?.message}</ErrorMessage>
-            )}
+            {!!error?.message && <ErrorMessage sx={{ color: 'error.main' }}>{error?.message}</ErrorMessage>}
           </ErrorWrapper>
         </FormControl>
       )}
