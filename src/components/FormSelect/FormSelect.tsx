@@ -17,14 +17,17 @@ const FormSelect = <T extends FieldValues>({ ...props }: FormSelectProps<T>) => 
             <Select
               {...field}
               {...props}
+              defaultValue=""
               labelId={`${props.name}-label`}
               id={props.name}
               onChange={(event: SelectChangeEvent) => field.onChange(event.target.value)}
               error={!!error}
             >
-              <MenuItem value="Разработчик">Разработчик</MenuItem>
-              <MenuItem value="Тестировщик">Тестировщик</MenuItem>
-              <MenuItem value="Аналитик">Аналитик</MenuItem>
+              {props.items.map((menuItem, menuItemIndex) => (
+                <MenuItem key={menuItemIndex} value={menuItem}>
+                  {menuItem}
+                </MenuItem>
+              ))}
             </Select>
             {!!error?.message && <ErrorMessage sx={{ color: 'error.main' }}>{error?.message}</ErrorMessage>}
           </ErrorWrapper>

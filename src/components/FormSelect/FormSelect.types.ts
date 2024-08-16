@@ -6,4 +6,5 @@ export interface FormSelectProps<T extends FieldValues> {
   label: string;
   control: Control<T>;
   disabled: boolean;
+  items: string[];
 }

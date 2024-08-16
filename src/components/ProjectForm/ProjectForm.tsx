@@ -56,6 +56,7 @@ const ProjectForm = ({ update, index, value, remove, contactDisabled }: ProjectF
             label="Роль на проекте"
             control={control}
             disabled={disabled}
+            items={['Разработчик', 'Тестировщик', 'Аналитик']}
           />
           <DatePickerWrapper>
             <FormDatePicker
