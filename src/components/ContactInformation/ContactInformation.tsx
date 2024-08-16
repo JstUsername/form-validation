@@ -69,7 +69,7 @@ const ContactInformation = ({ contactDisabled }: { contactDisabled: boolean }) =
         <FormBlockWrapper>
           <Typography variant="h6">Другое</Typography>
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
-            <FormCheckbox name="activity" disabled={contactDisabled} />
+            <FormCheckbox name="activity" disabled={contactDisabled} label="За любой движ" />
           </Box>
         </FormBlockWrapper>
       </FormWrapper>

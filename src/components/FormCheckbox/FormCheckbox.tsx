@@ -4,7 +4,7 @@ import { FormCheckboxProps } from './FormCheckbox.types';
 import { ErrorWrapper } from '../../commons/ErrorWrapper/ErrorWrapper';
 import { ErrorMessage } from '../../commons/ErrorMessage/ErrorMessage';
 
-const FormCheckbox = ({ name, disabled }: FormCheckboxProps) => {
+const FormCheckbox = ({ name, disabled, label }: FormCheckboxProps) => {
   return (
     <Controller
       name={name}
@@ -15,7 +15,7 @@ const FormCheckbox = ({ name, disabled }: FormCheckboxProps) => {
             control={
               <Checkbox {...field} onChange={(event) => field.onChange(event.target.checked)} disabled={disabled} />
             }
-            label="За любой движ"
+            label={label}
             sx={{ color: errors.activity ? 'error.main' : 'text.primary', margin: 0 }}
           />
           {!!error?.message && <ErrorMessage sx={{ marginLeft: 1.5 }}>{error.message}</ErrorMessage>}
