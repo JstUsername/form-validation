@@ -4,14 +4,14 @@ import { FormSelectProps } from './FormSelect.types';
 import { ErrorWrapper } from '../../commons/ErrorWrapper/ErrorWrapper';
 import { ErrorMessage } from '../../commons/ErrorMessage/ErrorMessage';
 
-const FormSelect = <T extends FieldValues>({ ...props }: FormSelectProps<T>) => {
+const FormSelect = <T extends FieldValues>({ disabled, ...props }: FormSelectProps<T>) => {
   return (
     <Controller
       {...props}
       render={({ field, fieldState: { error } }) => (
         <FormControl>
           <ErrorWrapper>
-            <InputLabel {...props} id={`${props.name}-label`} error={!!error}>
+            <InputLabel {...props} id={`${props.name}-label`} disabled={disabled} error={!!error}>
               {props.label}
             </InputLabel>
             <Select
@@ -21,6 +21,7 @@ const FormSelect = <T extends FieldValues>({ ...props }: FormSelectProps<T>) => 
               labelId={`${props.name}-label`}
               id={props.name}
               onChange={(event: SelectChangeEvent) => field.onChange(event.target.value)}
+              disabled={disabled}
               error={!!error}
             >
               {props.items.map((menuItem, menuItemIndex) => (

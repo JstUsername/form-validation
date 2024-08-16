@@ -6,14 +6,20 @@ import { FormDatePickerProps } from './FormDatePicker.types';
 import { ErrorWrapper } from '../../commons/ErrorWrapper/ErrorWrapper';
 import { ErrorMessage } from '../../commons/ErrorMessage/ErrorMessage';
 
-const FormDatePicker = <T extends FieldValues>({ ...props }: FormDatePickerProps<T>) => {
+const FormDatePicker = <T extends FieldValues>({ disabled, ...props }: FormDatePickerProps<T>) => {
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={ru}>
       <Controller
         {...props}
         render={({ field, fieldState: { error } }) => (
           <ErrorWrapper sx={{ flex: 1 }}>
-            <DatePicker {...field} {...props} onChange={(date) => field.onChange(date)} disablePast={!!error} />
+            <DatePicker
+              {...field}
+              {...props}
+              disabled={disabled}
+              onChange={(date) => field.onChange(date)}
+              disablePast={!!error}
+            />
             {!!error?.message && <ErrorMessage sx={{ color: 'error.main' }}>{error?.message}</ErrorMessage>}
           </ErrorWrapper>
         )}

@@ -7,7 +7,7 @@ import { employeeSkills } from '../../constants/employeeSkills';
 import { ErrorMessage } from '../../commons/ErrorMessage/ErrorMessage';
 import { ErrorWrapper } from '../../commons/ErrorWrapper/ErrorWrapper';
 
-const FormAutocomplete = <T extends FieldValues>({ ...props }: FormAutocompleteProps<T>) => {
+const FormAutocomplete = <T extends FieldValues>({ disabled, ...props }: FormAutocompleteProps<T>) => {
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
@@ -23,6 +23,7 @@ const FormAutocomplete = <T extends FieldValues>({ ...props }: FormAutocompleteP
             limitTags={isSmallScreen ? 1 : 3}
             id={props.name}
             options={employeeSkills}
+            disabled={disabled}
             filterSelectedOptions
             renderInput={(params) => <StyledTextField {...params} label="Навыки *" error={!!error} />}
             onChange={(_event, newSkill) => field.onChange(newSkill)}

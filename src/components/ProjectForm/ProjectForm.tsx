@@ -13,7 +13,7 @@ import { DatePickerWrapper, HeaderWrapper } from './ProjectForm.styled';
 import TrashIcon from '../../assets/trash-icon.svg?react';
 
 const ProjectForm = ({ update, index, value, remove, contactDisabled }: ProjectFormProps) => {
-  const { getValues, control, trigger, setValue } = useFormContext<ContactInformationValidationType>();
+  const { getValues, control, trigger } = useFormContext<ContactInformationValidationType>();
   const disabled = getValues(`projectsArray.${index}.disabled`);
 
   const ProjectSubmit = async () => {
@@ -21,7 +21,6 @@ const ProjectForm = ({ update, index, value, remove, contactDisabled }: ProjectF
     if (result) {
       const data = getValues(`projectsArray.${index}`);
       update(index, { ...data, disabled: true });
-      setValue(`projectsArray.${index}`, { ...data, disabled: true });
     }
   };
 
