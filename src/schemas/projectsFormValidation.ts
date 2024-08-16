@@ -11,8 +11,11 @@ export const projectsFormValidationSchema = object().shape({
   role: string().required('Выберите роль на проекте.'),
   beginning: date()
     .required('Введите дату начала работы.')
-    .max(ref('end'), 'Дата начала не может быть больше даты окончания.')
-    .typeError('Введите дату в правильном формате.'),
+    .typeError('Введите дату в правильном формате.')
+    .test('max-date', 'Дата начала не может быть больше даты окончания.', function (value) {
+      const { end } = this.parent;
+      return end === null || value === null || value <= end;
+    }),
   end: date()
     .nullable()
     .min(ref('beginning'), 'Дата окончания не может быть меньше даты начала.')
