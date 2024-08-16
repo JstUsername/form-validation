@@ -18,7 +18,7 @@ const FormCheckbox = ({ name, disabled }: FormCheckboxProps) => {
             label="За любой движ"
             sx={{ color: errors.activity ? 'error.main' : 'text.primary', margin: 0 }}
           />
-          {!!error?.message && <ErrorMessage sx={{ marginLeft: '12px' }}>{error.message}</ErrorMessage>}
+          {!!error?.message && <ErrorMessage sx={{ marginLeft: 1.5 }}>{error.message}</ErrorMessage>}
         </ErrorWrapper>
       )}
     />

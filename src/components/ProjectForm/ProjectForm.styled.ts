@@ -2,7 +2,7 @@ import { Box, styled } from '@mui/material';
 
 export const DatePickerWrapper = styled(Box)`
   display: flex;
-  gap: 12px;
+  gap: ${({ theme }) => theme.spacing(1.5)};
 
   ${({ theme }) => theme.breakpoints.down('md')} {
     flex-direction: column;

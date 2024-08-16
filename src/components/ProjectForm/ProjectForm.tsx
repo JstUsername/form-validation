@@ -30,12 +30,12 @@ const ProjectForm = ({ update, index, value, remove, contactDisabled }: ProjectF
   };
 
   return (
-    <FormWrapper sx={{ width: '100%', paddingBottom: '12px' }}>
+    <FormWrapper sx={{ width: '100%', paddingBottom: 1.5 }}>
       <FormBlockWrapper>
         <HeaderWrapper>
           <Typography variant="h6">Проект №{value.number}</Typography>
           {!disabled && (
-            <IconButton sx={{ marginX: '-8px', marginY: '-8px' }} onClick={() => remove(index)}>
+            <IconButton sx={{ marginX: -1, marginY: -1 }} onClick={() => remove(index)}>
               <TrashIcon />
             </IconButton>
           )}

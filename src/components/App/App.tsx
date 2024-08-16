@@ -54,7 +54,7 @@ const App = () => {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <FormProvider {...contactInformationForm}>
-        <Box sx={{ margin: '16px', border: '1px solid', borderColor: 'primary.main', borderRadius: '4px' }}>
+        <Box sx={{ margin: 2, border: '1px solid', borderColor: 'primary.main', borderRadius: '4px' }}>
           <StyledTabs
             value={tabsValue}
             onChange={handleChangeTab}
