@@ -7,7 +7,10 @@ export const contactInformationValidation = yup.object().shape({
   surname: yup.string().required('Введите фамилию.'),
   name: yup.string().required('Введите имя.'),
   patronymic: yup.string(),
-  phone: yup.string().required('Введите номер телефона.'),
+  phone: yup
+    .string()
+    .matches(/^\+7\(\d{3}\) \d{3}-\d{2}-\d{2}$/, 'Введите корректный номер.')
+    .required('Введите номер телефона.'),
   email: yup.string().email('Введите корректный email.'),
   activity: yup
     .boolean()

@@ -5,7 +5,7 @@ import { FormWrapper } from '../../commons/FormWrapper/FormWrapper';
 import { FormBlockWrapper } from '../../commons/FormBlockWrapper/FormBlockWrapper';
 import { FieldsWrapper } from '../../commons/FieldsWrapper/FieldsWrapper';
 import FormTextField from '../FormTextField/FormTextField';
-import EmailPhoneField from '../EmailPhoneField/EmailPhoneField';
+import PhoneField from '../PhoneField/PhoneField';
 import FormCheckbox from '../FormCheckbox/FormCheckbox';
 
 const ContactInformation = ({ contactDisabled }: { contactDisabled: boolean }) => {
@@ -52,7 +52,7 @@ const ContactInformation = ({ contactDisabled }: { contactDisabled: boolean }) =
             Контакты
           </Typography>
           <FieldsWrapper>
-            <EmailPhoneField
+            <PhoneField
               required
               autoComplete="tel"
               name="phone"
@@ -60,7 +60,7 @@ const ContactInformation = ({ contactDisabled }: { contactDisabled: boolean }) =
               control={control}
               disabled={contactDisabled}
             />
-            <EmailPhoneField
+            <FormTextField
               autoComplete="email"
               name="email"
               label="E-mail"
