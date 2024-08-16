@@ -11,7 +11,7 @@ export const StyledTabs = styled(Tabs)<{ error: string }>`
 
 export const StyledTab = styled(Tab)<{ error: string }>`
   min-height: 42px;
-  padding: 9px 16px;
+  padding: 10px 16px;
 
   &.MuiTab-root {
     color: ${({ error, theme }) => (error === 'true' ? theme.palette.error.main : theme.palette.primary.main)};
