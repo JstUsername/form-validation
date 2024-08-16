@@ -9,7 +9,10 @@ export const projectsFormValidationSchema = object().shape({
     .min(1, 'Выберите хотя бы один навык.')
     .required('Выберите хотя бы один навык.'),
   role: string().required('Выберите роль на проекте.'),
-  beginning: date().required('Введите дату начала работы.').typeError('Введите дату в правильном формате.'),
+  beginning: date()
+    .required('Введите дату начала работы.')
+    .max(ref('end'), 'Дата начала не может быть больше даты окончания.')
+    .typeError('Введите дату в правильном формате.'),
   end: date()
     .nullable()
     .min(ref('beginning'), 'Дата окончания не может быть меньше даты начала.')
