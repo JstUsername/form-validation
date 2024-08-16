@@ -6,17 +6,19 @@ export const contactInformationValidation = yup.object().shape({
   error: yup.boolean().required(),
   surname: yup
     .string()
-    .matches(/^[А-Яа-яЁёA-Za-z]+$/, 'Введите только буквы.')
-    .required('Введите фамилию.'),
+    .required('Введите фамилию.')
+    .matches(/^[А-Яа-яЁёA-Za-z]+$/, 'Введите только буквы.'),
   name: yup
     .string()
-    .matches(/^[А-Яа-яЁёA-Za-z]+$/, 'Введите только буквы.')
-    .required('Введите имя.'),
-  patronymic: yup.string().matches(/^[А-Яа-яЁёA-Za-z]+$/, 'Введите только буквы.'),
+    .required('Введите имя.')
+    .matches(/^[А-Яа-яЁёA-Za-z]+$/, 'Введите только буквы.'),
+  patronymic: yup
+    .string()
+    .test('is-valid', 'Введите только буквы.', (value) => !value || /^[А-Яа-яЁёA-Za-z]+$/.test(value)),
   phone: yup
     .string()
-    .matches(/^\+7\(\d{3}\) \d{3}-\d{2}-\d{2}$/, 'Введите корректный номер.')
-    .required('Введите номер телефона.'),
+    .required('Введите номер телефона.')
+    .matches(/^\+7\(\d{3}\) \d{3}-\d{2}-\d{2}$/, 'Введите корректный номер.'),
   email: yup.string().email('Введите корректный email.'),
   activity: yup
     .boolean()
