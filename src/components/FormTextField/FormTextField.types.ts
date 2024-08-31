@@ -9,4 +9,5 @@ export interface FormTextFieldProps<T extends FieldValues> {
   placeholder?: string;
   disabled?: boolean;
   InputProps?: InputBaseComponentsPropsOverrides;
+  manualValidation?: boolean;
 }

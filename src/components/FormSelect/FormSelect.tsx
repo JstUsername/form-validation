@@ -1,11 +1,11 @@
-import { Control, Controller, FieldValues, useFormContext } from 'react-hook-form';
+import { Controller, FieldValues, useFormContext } from 'react-hook-form';
 import { FormControl, InputLabel, Select, MenuItem, SelectChangeEvent } from '@mui/material';
 import { FormSelectProps } from './FormSelect.types';
 import { ErrorWrapper } from '../../commons/ErrorWrapper/ErrorWrapper';
 import { ErrorMessage } from '../../commons/ErrorMessage/ErrorMessage';
 
-const FormSelect = <T extends FieldValues>({ disabled, ...props }: FormSelectProps<T>) => {
-  const { control }: { control: Control<T> } = useFormContext();
+const FormSelect = <T extends FieldValues>({ disabled, manualValidation, ...props }: FormSelectProps<T>) => {
+  const { control, trigger } = useFormContext<T>();
 
   return (
     <Controller
@@ -23,9 +23,12 @@ const FormSelect = <T extends FieldValues>({ disabled, ...props }: FormSelectPro
               defaultValue=""
               labelId={`${props.name}-label`}
               id={props.name}
-              onChange={(event: SelectChangeEvent) => field.onChange(event.target.value)}
               disabled={disabled}
               error={!!error}
+              onChange={(event: SelectChangeEvent) => {
+                field.onChange(event.target.value);
+                manualValidation && trigger(props.name);
+              }}
             >
               {props.items.map((menuItem, menuItemIndex) => (
                 <MenuItem key={menuItemIndex} value={menuItem}>

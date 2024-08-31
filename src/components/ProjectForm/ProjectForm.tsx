@@ -46,18 +46,32 @@ const ProjectForm = ({ update, index, value, remove, contactDisabled }: ProjectF
             label="Название"
             placeholder="Название проекта"
             disabled={disabled}
+            manualValidation
           />
-          <FormAutocomplete name={`projectsArray.${index}.skills`} disabled={disabled} />
+          <FormAutocomplete name={`projectsArray.${index}.skills`} disabled={disabled} manualValidation />
           <FormSelect
             required
             name={`projectsArray.${index}.role`}
             label="Роль на проекте"
             disabled={disabled}
             items={['Разработчик', 'Тестировщик', 'Аналитик']}
+            manualValidation
           />
           <DatePickerWrapper>
-            <FormDatePicker label="Начало работы *" name={`projectsArray.${index}.beginning`} disabled={disabled} />
-            <FormDatePicker label="Окончание работы" name={`projectsArray.${index}.end`} disabled={disabled} />
+            <FormDatePicker
+              label="Начало работы *"
+              name={`projectsArray.${index}.beginning`}
+              index={index}
+              disabled={disabled}
+              manualValidation
+            />
+            <FormDatePicker
+              label="Окончание работы"
+              name={`projectsArray.${index}.end`}
+              index={index}
+              disabled={disabled}
+              manualValidation
+            />
           </DatePickerWrapper>
         </FieldsWrapper>
         {disabled ? (

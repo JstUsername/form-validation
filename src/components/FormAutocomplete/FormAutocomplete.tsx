@@ -1,5 +1,5 @@
 import { useMediaQuery, useTheme } from '@mui/material';
-import { Control, Controller, FieldValues, useFormContext } from 'react-hook-form';
+import { Controller, FieldValues, useFormContext } from 'react-hook-form';
 import { FormAutocompleteProps } from './FormAutocomplete.types';
 import { StyledAutocomplete } from './FormAutocomplete.styled';
 import { StyledTextField } from '../../commons/StyledTextField/StyledTextField';
@@ -7,10 +7,14 @@ import { employeeSkills } from '../../constants/employeeSkills';
 import { ErrorMessage } from '../../commons/ErrorMessage/ErrorMessage';
 import { ErrorWrapper } from '../../commons/ErrorWrapper/ErrorWrapper';
 
-const FormAutocomplete = <T extends FieldValues>({ disabled, ...props }: FormAutocompleteProps<T>) => {
+const FormAutocomplete = <T extends FieldValues>({
+  disabled,
+  manualValidation,
+  ...props
+}: FormAutocompleteProps<T>) => {
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
-  const { control }: { control: Control<T> } = useFormContext();
+  const { control, trigger } = useFormContext<T>();
 
   return (
     <Controller
@@ -28,7 +32,10 @@ const FormAutocomplete = <T extends FieldValues>({ disabled, ...props }: FormAut
             disabled={disabled}
             filterSelectedOptions
             renderInput={(params) => <StyledTextField {...params} label="Навыки *" error={!!error} />}
-            onChange={(_event, newSkill) => field.onChange(newSkill)}
+            onChange={(_event, newSkill) => {
+              field.onChange(newSkill);
+              manualValidation && trigger(props.name);
+            }}
           />
           {!!error?.message && <ErrorMessage sx={{ color: 'error.main' }}>{error?.message}</ErrorMessage>}
         </ErrorWrapper>
